@@ -23,6 +23,7 @@
       }
     }
   </script>
+  
 </head>
 <body class="font-saira">
     <header class="bg-cover bg-center" style="background-image: url('image/living-room.png')">
@@ -105,35 +106,50 @@
                 </div>
             </div>
             </section>
-            <section class=" flex mt-[30px] ">
-              <div class="pl-8 w-[400px] md:fle">
-                <h2  class=" md:text-[40px] text-[24px]  font-semibold">
-                  New In <br> Store Now
-              </h2>
-              <p class="text-[14px] md:text-[20px]  md:mt-[60px] px-4 ">
-                Get the latest items immediately with promo prices
-                <h2 class=" flex mt-[20px]  inderline-2">
-                  check <span><svg class="mt-2" width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 7C0.447715 7 0 7.44772 0 8C0 8.55228 0.447715 9 1 9V7ZM21.7071 8.70711C22.0976 8.31658 22.0976 7.68342 21.7071 7.29289L15.3431 0.928932C14.9526 0.538408 14.3195 0.538408 13.9289 0.928932C13.5384 1.31946 13.5384 1.95262 13.9289 2.34315L19.5858 8L13.9289 13.6569C13.5384 14.0474 13.5384 14.6805 13.9289 15.0711C14.3195 15.4616 14.9526 15.4616 15.3431 15.0711L21.7071 8.70711ZM1 9H21V7H1V9Z" fill="#23262F"/>
-                    </svg>
-                    </span>
-                </h2>
+            <section class="flex mt-8">
+              <div class="pl-8 w-[400px]">
+                  
+                  <h2 class="text-[40px] font-semibold">
+                      New In <br> Store Now
+                  </h2>
+                  <p class="text-[20px] mt-[60px] px-4">
+                      Get the latest items immediately with promo prices
+                  </p>
+
+                  <div id="checkButton" class="flex items-center mt-5 cursor-pointer group">
+                      <span class="mr-2">check</span>
+                      <svg class="transform transition-transform duration-300 group-hover:translate-x-2" 
+                           width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 7C0.447715 7 0 7.44772 0 8C0 8.55228 0.447715 9 1 9V7ZM21.7071 8.70711C22.0976 8.31658 22.0976 7.68342 21.7071 7.29289L15.3431 0.928932C14.9526 0.538408 14.3195 0.538408 13.9289 0.928932C13.5384 1.31946 13.5384 1.95262 13.9289 2.34315L19.5858 8L13.9289 13.6569C13.5384 14.0474 13.5384 14.6805 13.9289 15.0711C14.3195 15.4616 14.9526 15.4616 15.3431 15.0711L21.7071 8.70711ZM1 9H21V7H1V9Z" fill="#23262F"/>
+                      </svg>
+                  </div>
               </div>
-              <div class="flex gap-4 text-white">
-                <div >
-                    <img src="image/ime.png" alt="" class="relative rounded w-[256px] h-[355px] object-cover ">
-                </div>
-                <div>
-                    <img src="image/mclean.png" alt="">
-                </div>
-                <div>
-                    <img src="image/sanibell.png" alt="">
-                </div>
-                <div>
-                    <img src="image/jean.png" alt="">
-                </div>
-            </div>
-        </section>
+      
+              
+              <div class="relative overflow-hidden flex-1">
+            
+                  <div id="sliderWrapper" class="flex gap-5 transition-transform duration-500">
+                    
+                      <div class="flex-shrink-0">
+                          <img src="image/ime.png" alt="Product 1" 
+                               class="w-[256px] h-[355px] object-cover rounded-lg">
+                      </div>
+                      <div class="flex-shrink-0">
+                          <img src="image/mclean.png" alt="Product 2" 
+                               class="w-[256px] h-[355px] object-cover rounded-lg">
+                      </div>
+                      <div class="flex-shrink-0">
+                          <img src="image/sanibell.png" alt="Product 3" 
+                               class="w-[256px] h-[355px] object-cover rounded-lg">
+                      </div>
+                      <div class="flex-shrink-0">
+                          <img src="image/jean.png" alt="Product 4" 
+                               class="w-[256px] h-[355px] object-cover rounded-lg">
+                      </div>
+                  </div>
+              </div>
+          </section>
+      
         <section>
           <div class="  ml-5 mr-5 md:mt-[140px] max-md:max-w-full mt-[93px] ">
             <div class="flex gap-5 max-md:flex-col">
@@ -169,9 +185,42 @@
             </div>
         </div>
       </section>
-        
-     
-          
+
+
+      <footer>
+
+      </footer>
+    
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('sliderWrapper');
+            const slides = slider.children;
+            const checkButton = document.getElementById('checkButton');
+
+            let currentIndex = 0;
+            const slideWidth = 276; // 256px width + 20px gap
+            const maxIndex = slides.length - 3; // Afficher 3 slides à la fois
+
+            function updateSlider() {
+                const offset = -currentIndex * slideWidth;
+                slider.style.transform = `translateX(${offset}px)`;
+            }
+
+            checkButton.addEventListener('click', () => {
+                // Avancer d'un slide, ou retourner au début si on est à la fin
+                currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+                updateSlider();
+            });
+
+            // Optional: Auto-slide
+            /*
+            setInterval(() => {
+                currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+                updateSlider();
+            }, 5000);
+            */
+        });
+    </script>
             
               
             </body>
